@@ -1,0 +1,37 @@
+﻿@using data.Model
+@model List<TblUser>
+
+@{
+    Layout = null;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Anasayfa</title>
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @*@Html.ActionLink("Yeni Kayıt Ekle", "Edit", new { @class = "btn btn-primary" })*@
+    <p></p>
+    <a class="btn btn-sm btn-primary" asp-controller="User" asp-action="Edit">Yeni Kayıt Ekle</a>
+    <p></p>
+    <table class="table table-dark  table-bordered  ">
+        <tr>
+            <th> Id </th>
+            <th>Isım</th>
+            <th>Guncelle</th>
+            <th>Sil</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Username</td>
+                <td>@Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })</td>     @*@Html.ActionLink(item.Id.ToString(), "Edit", "User", new { id = item.Id })*@
+                <td>  @Html.ActionLink("Sil", "Delete", new { id = item.Id, }, new { @class = "btn btn-danger" })</td>      @*<a class="btn btn-sm btn-danger" asp-controller="User" asp-action="Delete" asp-route-Id="@item.Id">SİL</a>*@
+            </tr>                                        //user/Edit/Id no ya gonderilen id
+        }
+    </table>
+</body>
+</html>
+
